@@ -3,7 +3,7 @@ APT_PACKAGES=(fd-find ripgrep libtool-bin cmake tidy python3-pip snapd sqlite3 l
 NPM_PACKAGES=(vscode-css-languageserver-bin vscode-html-languageserver-bin typescript-language-server @tailwindcss/language-server@0.0.4 stylelint js-beautify import-js neovim diagnostic-languageserver)
 SNAP_SOFTWARE=(slack postman dbeaver-ce libreoffice vlc docker discord)
 GITHUB_DOTFILES_REPOSITORY=git@github.com:TulioMagnus/dotfiles.git
-RUBY_VERSIONS=('2.7.1' '2.7.3' '3.1.1' '3.0.3')
+RUBY_VERSIONS=(2.7.1 2.7.3 3.1.1 3.0.3)
 GEMS=(solargraph neovim bundler)
 export LAZY_VER="0.31.4" # LAZYGIT VERSION
 
