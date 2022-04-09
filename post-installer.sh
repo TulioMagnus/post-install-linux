@@ -21,7 +21,7 @@ install_ruby () {
   cat ruby-build/install.sh
   PREFIX=/usr/local sudo ./ruby-build/install.sh
   echo "gem: --no-document" > ~/.gemrc
-  for i in $RUBY_VERSIONS; do rbenv install $i --skip; done
+  for i in $RUBY_VERSIONS; do rbenv install $i -s; done
 }
 
 # function to install Configuration and Dotfiles
