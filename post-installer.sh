@@ -24,6 +24,11 @@ install_ruby () {
   for i in $RUBY_VERSIONS; do rbenv install $i -s; done
 }
 
+install_zsh() {
+  # Oh My zsh plugin
+  git clone https://github.com/zsh-users/zsh-autosuggestions ${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/plugins/zsh-autosuggestions
+}
+
 # function to install Configuration and Dotfiles
 install_dotfiles () {
 echo "================= INSTALANDO DOTFILES ================="
@@ -89,6 +94,7 @@ echo "================= INSTALANDO LAZY GIT ================="
 
 # STEPS : Remove any step if not necessary
 install_packages
+install_zsh
 install_dotfiles
 install_snap_common
 install_ruby
