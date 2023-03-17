@@ -4,8 +4,6 @@ NPM_PACKAGES=(vscode-css-languageserver-bin vscode-html-languageserver-bin types
 SNAP_SOFTWARE=(slack postman dbeaver-ce libreoffice vlc docker discord gifex)
 GITHUB_DOTFILES_REPOSITORY=git@github.com:TulioMagnus/dotfiles.git
 RUBY_VERSIONS=(2.7.1 2.7.3 3.1.1 3.0.3)
-GEMS=(solargraph neovim bundler)
-export LAZY_VER="0.31.4" # LAZYGIT VERSION
 
 # Install base packages
 install_packages () {
@@ -39,57 +37,8 @@ echo "================= INSTALANDO DOTFILES ================="
   ln -s ~/git/dotfiles/zshrc ~/.zshrc
 }
 
-install_fonts () {
-echo "================= INSTALANDO FONTES ================="
-  sudo rm -r ~/.fonts
-  mkdir ~/.fonts
-  wget -q https://github.com/ryanoasis/nerd-fonts/releases/download/v2.1.0/JetBrainsMono.zip
-  unzip -q -o JetBrainsMono.zip -d ./fonts
-}
-
 install_snap_common () {
   for i in $SNAP_SOFTWARE; do sudo snap install $i; done
-}
-
-install_emacs () {
-echo "================= INSTALANDO EMACS ================="
-  # Remove emacs and all it's dependencies to solve any kind of conflict
-  sudo snap remove emacs
-  sudo rm -r ~/snap/emacs
-  sudo rm -r ~/.emacs.d
-  sudo rm -r ~/.doom.d
-  # Install Emacs using snap
-  sudo snap install emacs --classic
-  # Clone DOOM EMACS repositories
-  git clone --quiet --depth 1 https://github.com/hlissner/doom-emacs ~/.emacs.d
-  git clone --quiet https://github.com/otavioschwanck/doom_emacs_dotfiles.git ~/.doom.d
-  ~/.emacs.d/bin/doom sync
-}
-
-install_nvim () {
-echo "================= INSTALANDO NVIM ================="
-  # Remove nvim and all it's dependencies to solve any kind of conflict
-  sudo rm -r ~/.config/nvim
-  # Install nvim using python3
-  python3 -m pip install neovim-remote pynvim --quiet
-  # Clone NVIM respositories
-  git clone --quiet git@github.com:otavioschwanck/mood-nvim.git ~/.config/nvim
-  cd ~/.config/nvim; git reset --quiet --hard HEAD; git pull; cd
-  git config --global push.default current
-  git clone --quiet --depth 1 https://github.com/wbthomason/packer.nvim ~/.local/share/nvim/site/pack/packer/start/packer.nvim
-  cd ~/.local/share/nvim/site/pack/packer/start/packer.nvim; git reset --quiet --hard HEAD; git pull; cd
-}
-
-install_gems () {
-echo "================= INSTALANDO GEMS ================="
-  for i in $GEMS; do gem install i --silent; done
-}
-
-install_lazygit () {
-echo "================= INSTALANDO LAZY GIT ================="
-  wget -q -O lazygit.tgz https://github.com/jesseduffield/lazygit/releases/download/v${LAZY_VER}/lazygit_${LAZY_VER}_Linux_x86_64.tar.gz
-  tar xf lazygit.tgz
-  sudo mv lazygit /usr/local/bin/
 }
 
 # STEPS : Remove any step if not necessary
@@ -98,10 +47,5 @@ install_zsh
 install_dotfiles
 install_snap_common
 install_ruby
-install_fonts
-install_nvim
-install_gems
-install_lazygit
-install_emacs
 
 echo "Script finalizado!"
